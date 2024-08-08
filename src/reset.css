@@ -1,61 +1,196 @@
-body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{margin:0;padding:0}
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+    margin: 0;
+    padding: 0
+}
 
-html{color:#000;overflow-y:scroll;overflow:-moz-scrollbars-vertical}
+html {
+    color: #000;
+    overflow-y: scroll;
+    overflow: -moz-scrollbars-vertical
+}
 
-body,button,input,select,textarea{font-size:12px;font-family:arial,'Hiragino Sans GB','Microsoft Yahei','微软雅黑','宋体',\5b8b\4f53,Tahoma,Arial,Helvetica,STHeiti}
+body,
+button,
+input,
+select,
+textarea {
+    font-size: 12px;
+    font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体', \5b8b\4f53, Tahoma, Arial, Helvetica, STHeiti
+}
 
-h1,h2,h3,h4,h5,h6{font-size:100%}
+body {
+    width: 100vw;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
-em{font-style:normal}
+#app {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
 
-small{font-size:12px}
+body::-webkit-scrollbar {
+    appearance: none;
+}
 
-ul,ol{list-style:none}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: 100%
+}
 
-a{text-decoration:none}
+em {
+    font-style: normal
+}
 
-a:hover{text-decoration:underline}
+small {
+    font-size: 12px
+}
 
-legend{color:#000}
+ul,
+ol {
+    list-style: none
+}
 
-fieldset,img{border:0}
+a {
+    text-decoration: none
+}
 
-button,input,select,textarea{font-size:100%}
+a:hover {
+    text-decoration: underline
+}
 
-table{border-collapse:collapse;border-spacing:0}
+legend {
+    color: #000
+}
 
-img{-ms-interpolation-mode:bicubic}
+fieldset,
+img {
+    border: 0
+}
 
-textarea{resize:vertical}
+button,
+input,
+select,
+textarea {
+    font-size: 100%
+}
 
-.left{float:left}
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
 
-.right{float:right}
+img {
+    -ms-interpolation-mode: bicubic
+}
 
-.overflow{overflow:hidden}
+textarea {
+    resize: vertical
+}
 
-.hide{display:none}
+.left {
+    float: left
+}
 
-.block{display:block}
+.right {
+    float: right
+}
 
-.inline{display:inline}
+.overflow {
+    overflow: hidden
+}
 
-.error{color:#F00;font-size:12px}
+.hide {
+    display: none
+}
 
-label,button{cursor:pointer}
+.block {
+    display: block
+}
 
-.clearfix:after{content:'\20';display:block;height:0;clear:both}
+.inline {
+    display: inline
+}
 
-.clearfix{zoom:1}.clear{clear:both;height:0;line-height:0;font-size:0;visibility:hidden;overflow:hidden}
+.error {
+    color: #F00;
+    font-size: 12px
+}
 
-.wordwrap{word-break:break-all;word-wrap:break-word}
+label,
+button {
+    cursor: pointer
+}
 
-pre.wordwrap{white-space:pre-wrap}
+.clearfix:after {
+    content: '\20';
+    display: block;
+    height: 0;
+    clear: both
+}
 
-body{text-align:center}
+.clearfix {
+    zoom: 1
+}
 
-body,form{position:relative}
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    visibility: hidden;
+    overflow: hidden
+}
 
-td{text-align:left}
+.wordwrap {
+    word-break: break-all;
+    word-wrap: break-word
+}
 
-img{border:0}
+pre.wordwrap {
+    white-space: pre-wrap
+}
+
+body,
+form {
+    position: relative
+}
+
+td {
+    text-align: left
+}
+
+img {
+    border: 0
+}
