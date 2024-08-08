@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import './reset.css'
+import './iconfont/iconfont.css'
 import router from './router'
 import App from './App.vue'
 
