@@ -63,6 +63,9 @@ const props = defineProps({
     default: "",
   },
 });
+
+// const emit = defineEmits(['click'])
+
 </script>
 
 <style>
@@ -79,6 +82,7 @@ const props = defineProps({
   color: #fff;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .bwy-btn_dot {
   color: var(--color);

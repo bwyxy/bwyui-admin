@@ -8,7 +8,12 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     BwyButton: typeof import('./src/components/BwyButton.vue')['default']
+    BwyCheckbox: typeof import('./src/components/Form/BwyCheckbox.vue')['default']
+    BwyForm: typeof import('./src/components/Form/BwyForm.vue')['default']
     BwyIcon: typeof import('./src/components/BwyIcon.vue')['default']
+    BwyInput: typeof import('./src/components/Form/BwyInput.vue')['default']
+    BwyRadioGroup: typeof import('./src/components/Form/BwyRadioGroup.vue')['default']
+    BwyRadioItem: typeof import('./src/components/Form/BwyRadioItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
