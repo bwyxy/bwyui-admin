@@ -6,7 +6,10 @@
                 <span v-if="isRequired" class="bwy-input-required">*</span>
             </div>
             <div class="bwy-input-main">
-                <input autocomplete="off" :value="modelValue" :disabled="isDisabled" :placeholder="placeholder" :type="type" @input="handleChange" @blur="handleBlur">
+                <input autocomplete="off" :value="modelValue" :disabled="isDisabled" :placeholder="placeholder" :type="type=='password'?passwordType:type" @input="handleChange" @blur="handleBlur">
+                <div class="password-eye" v-if="type=='password'" @click="changePasswordType">
+                    <span :class="`iconfont ${passwordType=='password'?'eye-off':'eye'}`"></span>
+                </div>
             </div>
         </div>
         <div class="bwy-input-message">
@@ -19,6 +22,7 @@
 import {computed,inject,toRefs,ref,watch} from 'vue'
 
 const message = ref('')
+const passwordType = ref('password')
 
 let props = defineProps({
     label: {
@@ -46,6 +50,13 @@ let props = defineProps({
 })
 
 const {name} = toRefs(props)
+const changePasswordType = () => {
+ if(passwordType.value == 'text') {
+    passwordType.value = 'password'
+ }else {
+    passwordType.value = 'text'
+ }
+}
 // 接收值
 const emit = defineEmits(['update:modelValue','change'])
 // 是否禁用
@@ -118,22 +129,31 @@ const handleBlur = () => {
     min-height: 40px;
     position: relative;
     display: flex;
-    flex-direction: column;
     transition: .5s;
-}
-.bwy-input input{
-    width: 280px;
-    height: 40px;
-    border: none;
     border-radius: 4px;
     background: #fff;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 3px;
+}
+.bwy-input input{
+    flex: 1;
+    height: 40px;
+    border: none;
+    border-radius: 4px;
     box-sizing: border-box;
     padding: 0 16px;
     font-size: 16px;
     color: #1f1f1f;
     letter-spacing: 1px;
     line-height: 40px;
+}
+.password-eye{
+    width: 40px;
+    font-size: 24px;
+    color: #1f1f1f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 .bwy-input-message{
     width: 100%;
@@ -148,12 +168,15 @@ const handleBlur = () => {
    color: #f21a0b;
    margin-top: 6px;
 }
-
-.bwy-input input:focus{
+.bwy-input input:focus {
     outline: none;
     transition: .5s;
     box-shadow: rgba(33, 135, 237, 0.5) 0px 1px 6px;
 }
+/* .bwy-input input:focus{
+    transition: .5s;
+    box-shadow: rgba(33, 135, 237, 0.5) 0px 1px 6px;
+} */
 .bwy-input input::-webkit-input-placeholder{
     font-size: 16px;
     color: #dbdbdb;

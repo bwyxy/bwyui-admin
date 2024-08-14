@@ -38,7 +38,7 @@ const submit = async (value) => {
       isError.value = true
       rules.value[item].error = true
     }
-    if(rules.value[item].required && rules.value[item].validator) {
+    if(rules.value[item] && rules.value[item].required && rules.value[item].validator) {
       rules.value[item].error = !rules.value[item].validator(form.value[item])
     }
   })
