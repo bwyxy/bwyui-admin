@@ -30,5 +30,6 @@
     "src/*/*.vue",
     "src/*/**.vue",
     "src/**/*/**.vue",
+    "src/*/*/**.vue",
     "./types/auto-imports.d.ts"]
 }

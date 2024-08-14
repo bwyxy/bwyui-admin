@@ -2,9 +2,9 @@
   <div class="login-password">
     <div class="login-title">欢迎登录</div>
     <div style="margin: 20px 0;">
-      <bwy-form :form="forms" :rules="rules">
-        <bwy-input v-model="forms.account" label="账号" name="account" placeholder="账号"/>
-        <bwy-input v-model="forms.password" label="密码" name="password" type="password" placeholder="账号"/>
+      <bwy-form ref="form" :form="ruleform" :rules="rules">
+        <bwy-input v-model="ruleform.account" label="账号" name="account" placeholder="账号"/>
+        <bwy-input v-model="ruleform.password" label="密码" name="password" type="password" placeholder="账号"/>
       </bwy-form>
     </div>
     <bwy-button btnStyle="width: 220px;height: 35px;" @click="submit">登录</bwy-button>
@@ -12,11 +12,9 @@
 </template>
 
 <script setup>
+const form = ref()
 
-
-const form = ref(2)
-
-let forms = ref({
+let ruleform = ref({
   account : '',
   password : ''
 })
@@ -24,7 +22,10 @@ let forms = ref({
 const rules = reactive({
   account : {
     required : true,
-    message : '请输入账号'
+    message : '请输入账号',
+    validator(value) {
+      return value.length > 6
+    }
   },
   password: {
     required : true,
@@ -32,8 +33,11 @@ const rules = reactive({
   }
 })
 
-const submit= () => {
-  form.value.handleSubmit()
+const submit = async () => {
+  const data = await form.value.submit()
+  if(data) {
+    console.log('验证成功')
+  }
 }
 
 </script>

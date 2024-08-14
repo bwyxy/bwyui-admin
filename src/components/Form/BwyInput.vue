@@ -10,13 +10,13 @@
             </div>
         </div>
         <div class="bwy-input-message">
-            <div v-if="message" class="bwy-input-text">{{ message }}</div>
+            <div v-if="message" class="bwy-input-text">{{ message || '1111' }}</div>
         </div>
     </div>
 </template>
 
 <script setup>
-import {computed,inject,toRefs,ref} from 'vue'
+import {computed,inject,toRefs,ref,watch} from 'vue'
 
 const message = ref('')
 
@@ -50,8 +50,6 @@ const {name} = toRefs(props)
 const emit = defineEmits(['update:modelValue','change'])
 // 是否禁用
 const isDisabled = computed(() => props.disabled)
-// 父组件传值
-const {rules,form} = inject('bwyForm')
 // 是否必填
 const isRequired = computed(() => {
     if(!name.value) {
@@ -63,12 +61,26 @@ const isRequired = computed(() => {
         return false
     }
 })
+// 父组件传值
+const {rules,form,updateForm} = inject('bwyForm')
+watch(() => rules , () => {
+    if(name.value) {
+        if(rules[name.value] && rules[name.value].required && rules[name.value].error) {
+            message.value = rules[name.value].message || '请输入表单'
+        }else {
+            message.value = ''
+        }
+    }else {
+        message.value = ''
+    }
+} , {deep: true})
 // 表单输入
 const handleChange = (e) => {
     if(name.value) {
         if(rules[name.value] && rules[name.value].required) {
             if(e.target.value) {
                 message.value = ''
+                updateForm(name.value)
             }
         }
     }
@@ -82,7 +94,7 @@ const handleBlur = () => {
             if(!form[name.value]) {
                 message.value = rules[name.value].message || '请输入表单'
             }else if(rules[name.value].validator) {
-                message.value = rules[name.value].validator(form[name.value])
+                message.value = rules[name.value].validator(form[name.value])?'':(rules[name.value].message || '请输入表单')
             }else{
                 message.value = ''
             }

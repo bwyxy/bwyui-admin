@@ -1,12 +1,13 @@
 <template>
-  <form class="bwy-form" @submit.prevent="handleSubmit">
+  <form class="bwy-form">
     <slot></slot>
   </form>
 </template>
 
 <script setup>
-import {provide,toRefs} from 'vue'
+import {provide,toRefs,ref} from 'vue'
 
+const isError = ref(false)
 const props = defineProps({
   props:{
     type : Array
@@ -26,18 +27,41 @@ const props = defineProps({
 })
 
 const {rules,form} = toRefs(props)
+// 更新form表单
+const updateForm = (value) => {
+  rules.value[value].error = false
+}
+// 提交表单
+const submit = async (value) => {
+  Object.keys(form.value).forEach(item => {
+    if(rules.value[item] && rules.value[item].required && !form.value[item]) {
+      isError.value = true
+      rules.value[item].error = true
+    }
+    if(rules.value[item].required && rules.value[item].validator) {
+      rules.value[item].error = !rules.value[item].validator(form.value[item])
+    }
+  })
+  let errors = []
+  Object.keys(rules.value).forEach(item => {
+    if(rules.value[item].error) {
+      errors.push(false) 
+    }else {
+      errors.push(true)
+    }
+  })
+
+  return errors.every(item => item)
+}
 
 provide('bwyForm' , {
   rules: rules.value,
-  form: form.value
+  form: form.value,
+  isError: isError.value,
+  updateForm
 })
 
-// 表单确认时
-const handleSubmit = (value) => {
-  console.log(value)
-}
-
-// defineExpose({ handleSubmit })
+defineExpose({ submit })
 </script>
 
 <style>
