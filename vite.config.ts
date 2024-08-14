@@ -39,5 +39,40 @@ export default defineConfig({
         additionalData: `@import "@/styles/mixin.scss";`
       }
     }
+  },
+  build:{
+    outDir: 'dist',
+    assetsDir: 'assets',
+    // minify: "terser",
+    // sourcemap: false,
+    // chunkSizeWarningLimit: 1500,
+    rollupOptions: {
+          output: {
+            manualChunks(id:any) {
+              if (id.includes('node_modules')) {
+                return id.toString().split('node_modules/')[1].split('/')[0].toString();
+              }
+            },
+            chunkFileNames: 'js/[name].[hash].js',
+        }
+    },
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+      output: {
+        comments: true,
+      },
+    }
+  },
+  server: {
+    open: false,
+    host: '0.0.0.0',
+    port: 9000,
+    cors: true
+  },
+  optimizeDeps: {
+    include: []
   }
 })
