@@ -12,6 +12,7 @@ declare module 'vue' {
     BwyForm: typeof import('./src/components/Form/BwyForm.vue')['default']
     BwyIcon: typeof import('./src/components/BwyIcon.vue')['default']
     BwyInput: typeof import('./src/components/Form/BwyInput.vue')['default']
+    BwyMenu: typeof import('./src/components/Menu/BwyMenu.vue')['default']
     BwyRadioGroup: typeof import('./src/components/Form/BwyRadioGroup.vue')['default']
     BwyRadioItem: typeof import('./src/components/Form/BwyRadioItem.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

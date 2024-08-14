@@ -4,7 +4,7 @@ const routes : Array<RouteRecordRaw> = [
     {
         path : '/',
         name : 'home',
-        component: () => import('../layout/index.vue'),
+        component: () => import('../pages/home.vue'),
         meta : {icon : '' , title : '首页' , isLogin : true}
     },
     {
@@ -12,6 +12,12 @@ const routes : Array<RouteRecordRaw> = [
         name : 'Login',
         component : () => import('../pages/login.vue'),
         meta : {icon : '', title : '登录' , isLogin : false}
+    },
+    {
+        path : '/user',
+        name : 'User',
+        component: () => import('../pages/user/user.vue'),
+        meta : {icon : '', title : '用户' , isLogin : false}
     }
 ]
 
